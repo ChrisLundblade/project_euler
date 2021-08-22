@@ -8,46 +8,43 @@ let spokeeleven = 11
 let spokeone = 13
 let i = 3;
 let possibleFactors = [1];
-function getFirstPrimeFactor() {
-    while (true) {
-        if(ref % i === 0){
-            return i;
-        }
-        i += 2
-    }
-}
-let firstPrime = getFirstPrimeFactor();
-while (possibleFactors[possibleFactors.length-1] < Math.sqrt(ref / firstPrime)) {
+//In here, with the spokes, I employ a 12 spoke number wheel.
+//It's not mathematically proven for all primes (there are a lot of primes) but the theory goes
+//that all primes except for 2 and 3 fall along the first, fifth, seventh and eleventh spokes
+//of a 12-spoke number wheel. This allows us to count out around 75% of all integers in our search
+//which saves a lot of time in solving this problem which can take an extremely long time to solve
+//even with the help of a powerful computer processor
+while (possibleFactors[possibleFactors.length-1] < Math.sqrt(ref)) {
     if (ref % spokefive === 0) {
-        possibleFactors.push(spokefive)
-        spokefive += 12
+        possibleFactors.push(spokefive);
+        spokefive += 12;
     } else {
-        spokefive += 12
+        spokefive += 12;
     }
     if (ref % spokeseven === 0) {
-        possibleFactors.push(spokeseven)
-        spokeseven += 12
+        possibleFactors.push(spokeseven);
+        spokeseven += 12;
     } else {
-        spokeseven += 12
+        spokeseven += 12;
     }
     if (ref % spokeeleven === 0) {
-        possibleFactors.push(spokeeleven)
-        spokeeleven += 12
+        possibleFactors.push(spokeeleven);
+        spokeeleven += 12;
     }
     else {
-        spokeeleven += 12
+        spokeeleven += 12;
     }
     if (ref % spokeone === 0) {
-        possibleFactors.push(spokeone)
-        spokeone += 12
+        possibleFactors.push(spokeone);
+        spokeone += 12;
     }
     else{
-        spokeone += 12
+        spokeone += 12;
     }
 }
 function checkPrime(arrayOfPossiblePrimes) {
     i = 3
-    while (i < arrayOfPossiblePrimes[arrayOfPossiblePrimes.length-1]) {
+    while (i < Math.sqrt(arrayOfPossiblePrimes[arrayOfPossiblePrimes.length-1])) {
         if (arrayOfPossiblePrimes[arrayOfPossiblePrimes.length-1] % i === 0) {
             arrayOfPossiblePrimes.pop();
             i=1;
@@ -56,58 +53,14 @@ function checkPrime(arrayOfPossiblePrimes) {
     }
     return arrayOfPossiblePrimes[arrayOfPossiblePrimes.length-1];
 }
+//the following function increases the array length so we can't just use .length
+let currentArrLength = possibleFactors.length;
+//all the numbers in possibleFactors when multiplied by some other integer === ref
+//this loop puts those numbers into the array as well
+for (i = 0; i < currentArrLength; i++){
+    possibleFactors.push(ref/possibleFactors[i]);
+}
+//sorting so the biggest number is at the end
+possibleFactors.sort(function(a, b){return a - b});
 console.log(checkPrime(possibleFactors));
 console.log(performance.now()-currentTime);
-// so here we're employing a 12 spoke number wheel
-
-// while (y == 0):   #this gives us the first prime divisor 71,
-//     x += 1        #none of the other factors should be bigger than ref/71
-// if (ref % x == 0):
-// y = x
-// print (y)
-//
-// print(stack[-1])
-// while (stack[-1] < math.sqrt(ref / y)):
-// if (ref % 2 == 0):
-// stack.append(2)
-// print (2)
-// x += 1
-// if (ref % 3 == 0):
-// stack.append(3)
-// print (3)
-// if (ref % spokefive == 0):
-// stack.append(spokefive)
-// print (spokefive)
-// spokefive +=12
-// else:
-// spokefive +=12
-// if (ref % spokeseven == 0):
-// stack.append(spokeseven)
-// print (spokeseven)
-// spokeseven +=12
-// else:
-// spokeseven +=12
-// if (ref % spokeeleven == 0):
-// stack.append(spokeeleven)
-// print(spokeeleven)
-// spokeeleven +=12
-// else:
-// spokeeleven +=12
-// if (ref % spokeone == 0):
-// stack.append(spokeone)
-// print(spokeone)
-// spokeone += 12
-// else :
-// spokeone +=12
-// print (stack[-1])
-// x = 3
-// squrtofnumber = math.sqrt(stack[-1])
-// while (x < squrtofnumber):
-// if (stack[-1] % x == 0):
-// print ("popping")
-// stack.pop()
-// squrtofnumber = math.sqrt(stack[-1])
-// x = 1
-// x +=2
-// print ("Finally, at long last, the largest prime factor is:")
-// print (stack[-1])
