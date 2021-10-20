@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Euler 5</title>
+</head>
+<body>
+	<script>
+		'use strict';
+		//What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
+		function getSmallestEvenlyDivisibleByOneThroughTwenty(){
+            let smallestNum = 0;
+            let i = 20;//obviously a number smaller than twenty couldn't be evenly divisible by it.
+            while(smallestNum == 0){
+                if(isEvenlyDivisibleByOneThroughTwenty(i)){
+                    smallestNum = i;
+                } else{
+                    i+=20; //ensures it is divisible by the biggest number we're checking for
+                }
+            }
+			return smallestNum;
+		}
+		function isEvenlyDivisibleByOneThroughTwenty(num){
+		    //we don't have to consider 20 because we are counting by 20s
+		    for(let i = 1; i < 20; i++){
+		        if(num%i !== 0){
+		            return false;
+				}
+			}
+		    return true;
+		}
+        console.log(getSmallestEvenlyDivisibleByOneThroughTwenty());
+	</script>
+</body>
+</html>
