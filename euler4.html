@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+  <script>
+	  //finds out if the argument is a palindrome
+    function numIsPalindrome(num) {
+        //odd or even
+        //even path
+        if (num % 2 === 0) {
+            for (let i = 0; i < (num.toString().length / 2); i++) {
+				if(num.toString().charAt(i)===num.toString().charAt(num.toString().length-i-1)){
+				    continue;
+				} else{
+				    return false;
+				}
+            }
+            return true;
+        } else {
+            //odd path
+			for(let i = 0; i < ((num.toString().length/2)-1); i++){
+                if(num.toString().charAt(i)=== num.toString().charAt(num.toString().length-i-1)){
+                    continue;
+                } else{
+                    return false;
+                }
+            }
+            return true;
+			}
+        console.log("This shouldn't happen if I did this right.")
+    }
+    let i = 999;
+    let secondIterator = 999;
+    let currentBiggestPalindrome = 0;
+    while(secondIterator >=1){
+		if(numIsPalindrome(i * secondIterator)){
+
+		}
+
+        if(i === 1){
+            //when I hits 1 we reset it to 99 and decrement the secondary iterator
+			//then we continue to the next iteration
+			//might work the same if i is set to 100 and there's no continue due to fallthrough to the decrement
+            secondIterator--;
+            i=999;
+            continue;
+		}
+        i--;
+	}
+  </script>
+</body>
+</html>
