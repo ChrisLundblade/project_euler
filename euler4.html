@@ -8,38 +8,24 @@
   <script>
 	  //finds out if the argument is a palindrome
     function numIsPalindrome(num) {
-        //odd or even
-        //even path
-        if (num % 2 === 0) {
-            for (let i = 0; i < (num.toString().length / 2); i++) {
-				if(num.toString().charAt(i)===num.toString().charAt(num.toString().length-i-1)){
-				    continue;
-				} else{
-				    return false;
-				}
-            }
-            return true;
-        } else {
-            //odd path
-			for(let i = 0; i < ((num.toString().length/2)-1); i++){
-                if(num.toString().charAt(i)=== num.toString().charAt(num.toString().length-i-1)){
-                    continue;
-                } else{
-                    return false;
-                }
-            }
-            return true;
+		for (let i = 0; i < (num.toString().length / 2); i++) {
+			if(num.toString().charAt(i)===num.toString().charAt(num.toString().length-i-1)){
+				continue;
+			} else{
+				return false;
 			}
-        console.log("This shouldn't happen if I did this right.")
+		}
+		return true;
     }
     let i = 999;
     let secondIterator = 999;
     let currentBiggestPalindrome = 0;
     while(secondIterator >=1){
 		if(numIsPalindrome(i * secondIterator)){
-
+			if((i*secondIterator) > currentBiggestPalindrome){
+			    currentBiggestPalindrome = (i*secondIterator);
+			}
 		}
-
         if(i === 1){
             //when I hits 1 we reset it to 99 and decrement the secondary iterator
 			//then we continue to the next iteration
@@ -50,6 +36,7 @@
 		}
         i--;
 	}
+      console.log(currentBiggestPalindrome);
   </script>
 </body>
 </html>
